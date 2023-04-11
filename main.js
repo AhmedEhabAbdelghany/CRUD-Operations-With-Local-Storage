@@ -67,7 +67,7 @@ function addproductsfun (){
 // Function Display Products
 function displayProducts (displayproducts){
     if (displayproducts == 0){
-        productContainer.innerHTML = `<img src="images/NOTFOUND.PNG" class="notfound" alt="">`;
+        productContainer.innerHTML = `<img src="images/searchhhher.PNG" class="notfound" alt="">`;
     }
     else{
     var productdata = "";
