@@ -29,7 +29,8 @@ var productDescription =   document.getElementById("productdescription");
 var addProduct         =   document.getElementById("addproduct");
 var productContainer   =   document.getElementById("outputcontent");
 var searchinput        =   document.getElementById("search")
-
+var updateproductbtn   =   document.getElementById("updateproduct")
+var errorfill          =   document.getElementById("errorfill")
 
 addProduct.addEventListener("click",addproductsfun)
 var products = [];  
@@ -44,9 +45,10 @@ if (JSON.parse(localStorage.getItem("productsList")) != null){
 // Function Add Products
 function addproductsfun (){
     if (!productName.value || !productPrice.value || !productDescription.value) {
-        alert("Please Enter Fill All Fields")
+        errorfill.style.display = "block"
     }
     else{
+    errorfill.style.display = "none"
     var product = {
     pId    : products.length==0? 0 : products.length,    
     pname  : productName.value,
@@ -57,7 +59,7 @@ function addproductsfun (){
     localStorage.setItem("productsList", JSON.stringify(products));
     displayProducts(products);
     clearInput()
-    scrolltoaddProduct()
+    scrollafteraddProduct()
     }
 }
 
@@ -100,7 +102,49 @@ function deletetheproduct(id){
 }
 
 
-// Function Edit Product
+
+
+
+// Function Update Product
+var pId;
+function updateproduct(id){
+    pId=id;
+    filterProducts = products.filter(function(item){
+        return item.pId == id;
+    })
+    productName.value        = filterProducts[0].pname
+    productPrice.value       = filterProducts[0].pprice
+    productDescription.value = filterProducts[0].pdec
+    updateproductbtn.style.display = "block"
+    addProduct.style.display = "none"
+    scrolltoeditProduct()
+    errorfill.style.display = "none"
+}
+
+//Submit Edit Product Information Related To Function Update Product
+updateproductbtn.addEventListener("click",submiteditproduct)
+function submiteditproduct(){
+    if (!productName.value || !productPrice.value || !productDescription.value) {
+        errorfill.style.display = "block"
+    }
+    else{
+    errorfill.style.display = "none"
+    updateproductbtn.style.display = "none"
+    var updatedproducts = {
+    pId    : pId,    
+    pname  : productName.value,
+    pprice : productPrice.value,
+    pdec   :productDescription.value,
+    }
+    products[pId] = updatedproducts
+    localStorage.setItem("productsList", JSON.stringify(products));
+    displayProducts(products);
+    addProduct.style.display = "block"
+    clearInput()
+    scrollafteraddProduct()
+    }
+}
+
 
 
 
@@ -125,7 +169,7 @@ for(var i = 0 ; i<products.length; i++){
 
 
 // Function Clear Input Fields
-function clearInput () {
+function clearInput() {
     productName.value = ""
     productPrice.value = ""
     productDescription.value = ""
@@ -133,7 +177,7 @@ function clearInput () {
 
 
 // Function Scroll To After Add Product
-function scrolltoaddProduct(){
+function scrollafteraddProduct(){
     window.scrollTo(0, document.body.scrollHeight);
 }
 
