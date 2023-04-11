@@ -66,10 +66,6 @@ function addproductsfun (){
 
 // Function Display Products
 function displayProducts (displayproducts){
-    if (displayproducts == 0){
-        productContainer.innerHTML = `<img src="images/searchhhher.PNG" class="notfound" alt="">`;
-    }
-    else{
     var productdata = "";
     for(var i = 0 ; i<displayproducts.length;i++)
     {
@@ -85,7 +81,7 @@ function displayProducts (displayproducts){
         `
     }
     productContainer.innerHTML = productdata;
-    }
+    
 }
 
 
@@ -159,7 +155,7 @@ for(var i = 0 ; i<products.length; i++){
         displayProducts(searchresult)
     }
     else if(searchresult.length == 0){
-        displayProducts([])
+        productContainer.innerHTML = `<img src="images/searchhhher.PNG" class="notfound" alt="">`;
     }
 }
 }
