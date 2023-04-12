@@ -66,6 +66,10 @@ function addproductsfun (){
 
 // Function Display Products
 function displayProducts (displayproducts){
+    if(displayproducts == 0){
+        productContainer.innerHTML = `<img src="images/emptycart.JPG" class="emptycart" alt="">`;
+    }
+    else{
     var productdata = "";
     for(var i = 0 ; i<displayproducts.length;i++)
     {
@@ -81,7 +85,7 @@ function displayProducts (displayproducts){
         `
     }
     productContainer.innerHTML = productdata;
-    
+    }
 }
 
 
@@ -155,7 +159,7 @@ for(var i = 0 ; i<products.length; i++){
         displayProducts(searchresult)
     }
     else if(searchresult.length == 0){
-        productContainer.innerHTML = `<img src="images/searchhhher.PNG" class="notfound" alt="">`;
+        productContainer.innerHTML = `<img src="images/image_processing20200909-15779-7m3bwn.jpg" class="notfound" alt="">`;
     }
 }
 }
