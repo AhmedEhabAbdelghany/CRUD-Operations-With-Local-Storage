@@ -10,11 +10,13 @@
 </head>
 <body>
     <header></header>
+    <div class="darkandlightmode">
+        <i id="dmode" class="fa-solid fa-circle-half-stroke fa-lg"> Dark Mode</i>
+        <i id="lmode" class="fa-solid fa-moon fa-lg" style="display: none;"> Light Mode</i>
+</div>
     <div class="container">
-    <i id="dmode" class="fa-solid fa-circle-half-stroke fa-lg"> Dark Mode</i>
-    <i id="lmode" class="fa-solid fa-moon fa-lg" style="display: none;"> Light Mode</i>
     <div class="errorfill" id="errorfill">
-        <p>Please Fill All Fields</p>
+            <p>Please Fill All Fields</p>
     </div>
         <div class="content">
             <label for="" class="text">Product Name</label> <br><br>
@@ -25,7 +27,9 @@
 
             <label for="" class="text">Product Description</label> <br><br>
             <textarea class="textarea" id="productdescription"></textarea><br><br>
-
+            
+            <label id="upload" class="">Product image</label><br><br>
+            <input type="file" class="choosefile" id="img"><br><br>
 
             <button class="addproduct" id="addproduct">Add Product</button>
             <button class="addproduct updateproduct" id="updateproduct">Edit Product</button>
@@ -36,8 +40,7 @@
         <div class="output">
             <h1>Your Products</h1>
             <input type="search" class="inputfield" id="search" placeholder="Search for the Product Name">
-                <div id="outputcontent" class="outputcontent">
-                </div>
+                <div id="outputcontent" class="outputcontent"></div>
         </div>
     </div>
     <footer id="footer">

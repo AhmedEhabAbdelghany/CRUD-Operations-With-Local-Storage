@@ -8,9 +8,13 @@ body{
 header{
     padding: 20px;
 }
+.darkandlightmode{
+    float: left;
+    margin-left: 10px;
+}
+
 .fa-solid{
     cursor: pointer;
-    margin-left: 40px;
 }
 
 .dark-mode {
@@ -85,6 +89,32 @@ label{
     border: 3px solid rgb(0, 191, 255);
 }
 
+input::file-selector-button {
+    width: 150px;
+    font-weight: bold;
+    background-color: gray;
+    padding: 0.5em;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.4s all;
+}
+
+input::file-selector-button:hover {
+    background-color: rgb(0, 191, 255);
+}
+.choosefile{
+    font-size: 16px;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black;
+    width: 300px;
+    outline: none;
+    cursor: pointer;
+    transform: translate(-50% -50%);
+    margin-bottom: 50px;
+}
+
 .addproduct{
     margin:auto;
     padding: 20px 40px;
@@ -122,6 +152,7 @@ label{
     width: 75%;
     height: auto;
     margin: auto;
+    margin-top: 150px;
 }
 
 .output h1{
@@ -140,6 +171,7 @@ label{
     flex-wrap: wrap;
     gap: 90px;
 }
+
 
 .items{
     margin: auto;
@@ -165,8 +197,10 @@ label{
 
 
 .deleteproduct{
-    transform: translate(45%);
-    padding: 5px 30px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 5px 50px;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
@@ -199,9 +233,10 @@ label{
 
 
 .editproduct{
-    transform: translate(25%);
+    float: left;
     margin-top: 20px;
-    padding: 5px 30px;
+    margin-left: 10px;
+    padding: 5px 50px;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
@@ -233,13 +268,13 @@ label{
 }
 
 .notfound{
-    width: 60%;
-    height: 600px;
+    width: 50%;
+    height: 450px;
     margin: auto;
 }
 
 .emptycart{
-    width: 40%;
+    width: 30%;
     height: 300px;
     margin: auto;
 }
@@ -247,9 +282,8 @@ label{
 footer{
     width: 100%;
     height: 100px;
-    margin-top: 200px;
+    margin-top: 50px;
     background-color: gray;
-    position: relative;
 }
 
 footer p{
@@ -266,14 +300,21 @@ footer p{
 @media (min-width:300px) and (max-width:1000px){
     .notfound{
         width: 100%;
-        height: 600px;
+        height: 300px;
         margin: auto;
     }
     
     .emptycart{
         width: 100%;
-        height: 300px;
+        height: 200px;
         margin: auto;
     }
+    .deleteproduct{
+        padding: 5px 40px;
+    }
     
+    
+    .editproduct{
+        padding: 5px 40px;
+    }
 }

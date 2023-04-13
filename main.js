@@ -10,6 +10,7 @@ darkMode.addEventListener("click",function(){
         darkMode.style.display  = "none";
         lightMode.style.display = "inline";
         footer.style.borderTop     = "2px solid white"
+        productImg.style.color = "black"
 })
 //Light Mode
 lightMode.addEventListener("click",function(){
@@ -31,6 +32,8 @@ var productContainer   =   document.getElementById("outputcontent");
 var searchinput        =   document.getElementById("search")
 var updateproductbtn   =   document.getElementById("updateproduct")
 var errorfill          =   document.getElementById("errorfill")
+var productImg         =   document.getElementById("img");
+
 
 addProduct.addEventListener("click",addproductsfun)
 var products = [];  
@@ -44,20 +47,33 @@ if (JSON.parse(localStorage.getItem("productsList")) != null){
 
 // Function Add Products
 function addproductsfun (){
-    if (!productName.value || !productPrice.value || !productDescription.value) {
+    if (!productName.value || !productPrice.value || !productDescription.value || !productImg.value) {
         errorfill.style.display = "block"
+        scrolltoeditProduct()
     }
     else{
     errorfill.style.display = "none"
-    var product = {
-    pId    : products.length==0? 0 : products.length,    
-    pname  : productName.value,
-    pprice : productPrice.value,
-    pdec   :productDescription.value,
-    }
-    products.push(product)
-    localStorage.setItem("productsList", JSON.stringify(products));
-    displayProducts(products);
+    var img = productImg.files[0];
+    var pname = productName.value;
+    var pprice = productPrice.value;
+    var pdec = productDescription.value;
+    const fr = new FileReader();
+    fr.readAsDataURL(img);
+    fr.addEventListener("load", () => {
+      var ImgSrc = fr.result;
+      var product = {
+        pId    : products.length==0? 0 : products.length,    
+        pname  ,
+        pprice ,
+        pdec  ,
+        img: ImgSrc,
+        }
+        products.push(product)
+        console.log(product)
+        console.log(products)
+        localStorage.setItem("productsList", JSON.stringify(products));
+        displayProducts(products);
+    });
     clearInput()
     scrollafteraddProduct()
     }
@@ -67,7 +83,7 @@ function addproductsfun (){
 // Function Display Products
 function displayProducts (displayproducts){
     if(displayproducts == 0){
-        productContainer.innerHTML = `<img src="images/emptycart.JPG" class="emptycart" alt="">`;
+        productContainer.innerHTML = `<img src="images/noitemsfound.png" class="emptycart" alt="">`;
     }
     else{
     var productdata = "";
@@ -76,7 +92,7 @@ function displayProducts (displayproducts){
         productdata += `
         <div class="items">
         <p>${displayproducts[i].pname}</p>
-        <img src="images/iphone.jpeg" alt="">
+        <img  src="${displayproducts[i].img}" alt="">
         <p><b>PRICE :</b> ${displayproducts[i].pprice}</p>
         <p><b>PRODUCT DESCRIPTION :</b></p><p> ${displayproducts[i].pdec} </p>
         <button class="editproduct"  onclick="updateproduct(${displayproducts[i].pId})" > Edit </button>
@@ -124,21 +140,32 @@ function updateproduct(id){
 //Submit Edit Product Information Related To Function Update Product
 updateproductbtn.addEventListener("click",submiteditproduct)
 function submiteditproduct(){
-    if (!productName.value || !productPrice.value || !productDescription.value) {
+    if (!productName.value || !productPrice.value || !productDescription.value  || !productImg.value) {
         errorfill.style.display = "block"
+        scrolltoeditProduct()
     }
     else{
     errorfill.style.display = "none"
     updateproductbtn.style.display = "none"
-    var updatedproducts = {
-    pId    : pId,    
-    pname  : productName.value,
-    pprice : productPrice.value,
-    pdec   :productDescription.value,
-    }
-    products[pId] = updatedproducts
-    localStorage.setItem("productsList", JSON.stringify(products));
-    displayProducts(products);
+    var newImg = productImg.files[0];
+    var pname = productName.value;
+    var pprice = productPrice.value;
+    var pdec = productDescription.value;
+    const fr = new FileReader();
+    fr.readAsDataURL(newImg);
+    fr.addEventListener("load", () => {
+      var ImgSrc = fr.result;
+      var updatedproducts = {
+        pId    : pId,    
+        pname  ,
+        pprice ,
+        pdec  ,
+        img: ImgSrc,
+        }
+        products[pId] = updatedproducts
+        localStorage.setItem("productsList", JSON.stringify(products));
+        displayProducts(products);
+    });
     addProduct.style.display = "block"
     clearInput()
     scrollafteraddProduct()
@@ -159,7 +186,7 @@ for(var i = 0 ; i<products.length; i++){
         displayProducts(searchresult)
     }
     else if(searchresult.length == 0){
-        productContainer.innerHTML = `<img src="images/image_processing20200909-15779-7m3bwn.jpg" class="notfound" alt="">`;
+        productContainer.innerHTML = `<img src="images/processing20200909-15779-7m3bwn.png" class="notfound" alt="">`;
     }
 }
 }
