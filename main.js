@@ -48,8 +48,8 @@ if (JSON.parse(localStorage.getItem("productsList")) != null){
 // Function Add Products
 function addproductsfun (){
     if (!productName.value || !productPrice.value || !productDescription.value || !productImg.value) {
+        scrolltoeditProduct();
         errorfill.style.display = "block"
-        scrolltoeditProduct()
     }
     else{
     errorfill.style.display = "none"
