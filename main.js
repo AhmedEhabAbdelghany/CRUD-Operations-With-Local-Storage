@@ -48,8 +48,8 @@ if (JSON.parse(localStorage.getItem("productsList")) != null){
 // Function Add Products
 function addproductsfun (){
     if (!productName.value || !productPrice.value || !productDescription.value || !productImg.value) {
-        scrolltoeditProduct();
         errorfill.style.display = "block"
+        scrolltoeditProduct()
     }
     else{
     errorfill.style.display = "none"
@@ -93,8 +93,11 @@ function displayProducts (displayproducts){
         <div class="items">
         <p>${displayproducts[i].pname}</p>
         <img  src="${displayproducts[i].img}" alt="">
-        <p><b>PRICE :</b> ${displayproducts[i].pprice}</p>
-        <p><b>PRODUCT DESCRIPTION :</b></p><p> ${displayproducts[i].pdec} </p>
+        <p><b>PRICE :</b> ${displayproducts[i].pprice} <b>EGP</b></p>
+        <p ><b>PRODUCT DESCRIPTION :</b></p>
+        <div class="descr">
+        <p> ${displayproducts[i].pdec} </p>
+        </div>
         <button class="editproduct"  onclick="updateproduct(${displayproducts[i].pId})" > Edit </button>
         <button class="deleteproduct" onclick="deletetheproduct(${displayproducts[i].pId})" > Delete </button> 
         </div>
@@ -154,7 +157,7 @@ function submiteditproduct(){
     const fr = new FileReader();
     fr.readAsDataURL(newImg);
     fr.addEventListener("load", () => {
-      var ImgSrc = fr.result;
+       var ImgSrc = fr.result;
       var updatedproducts = {
         pId    : pId,    
         pname  ,
