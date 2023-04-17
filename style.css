@@ -186,6 +186,7 @@ input::file-selector-button:hover {
     position: relative;
     border-radius: 20px;
     flex-direction:row;
+    box-shadow: 5px 5px 10px black;
 }
 
 .items p{
@@ -295,6 +296,19 @@ input::file-selector-button:hover {
     margin: auto;
 }
 
+.arrowtop{
+    position: fixed;
+    right: 0;
+    bottom: 110px;
+    padding: 15px 5px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.arrowtop img{
+    width: 45px;
+}
+
 footer{
     width: 100%;
     height: 100px;
@@ -345,6 +359,14 @@ footer p{
         height: 200px;
         margin: auto;
     }
+
+    .arrowtop{
+        padding: 2px;
+    }
+
+    .arrowtop img{
+        width: 35px;
+    }
 }
 
 
@@ -355,7 +377,7 @@ footer p{
     
     
     .items{
-        width: 60%;
+        width: 70%;
         margin: auto;
     }
     .deleteproduct{

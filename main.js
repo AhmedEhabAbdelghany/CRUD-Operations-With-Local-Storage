@@ -1,8 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////// Dark Mode And Light Mode //////////////////////////////////////////////////////////////////////
-var darkMode  =  document.getElementById("dmode");
-var lightMode =  document.getElementById("lmode");
-var text      =  document.getElementsByClassName("text");
-var footer    =  document.getElementById("footer");
+var darkMode      =  document.getElementById("dmode");
+var lightMode     =  document.getElementById("lmode");
+var text          =  document.getElementsByClassName("text");
+var footer        =  document.getElementById("footer");
 
 // Dark Mode
 darkMode.addEventListener("click",function(){
@@ -33,6 +33,7 @@ var searchinput        =   document.getElementById("search")
 var updateproductbtn   =   document.getElementById("updateproduct")
 var errorfill          =   document.getElementById("errorfill")
 var productImg         =   document.getElementById("img");
+var arrowtop           =   document.querySelector(".arrowtop")
 
 
 addProduct.addEventListener("click",addproductsfun)
@@ -195,7 +196,10 @@ for(var i = 0 ; i<products.length; i++){
 }
 
 
-
+// Function For Fixed Arrow-Top 
+arrowtop.addEventListener("click",function(){
+    scrolltoeditProduct()
+})
 
 
 // Function Clear Input Fields
